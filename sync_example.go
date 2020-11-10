@@ -2,37 +2,23 @@ package main
 
 import (
 	"sync"
-	"unsafe"
+	"testing"
 )
 
-type T1 struct {
-	x int
-}
+var dataLarge []byte
 
-type T2 struct {
-	x int
-	y int
-}
+const size = 64 * 1024 //65536
 
-func fn() {
-	s := []int{}
-
-	v := sync.Pool{}
-	v.Put(s) // want `argument should be pointer-like`
-	v.Put(&s)
-	v.Put(T1{}) // want `argument should be pointer-like`
-	v.Put(T2{}) // want `argument should be pointer-like`
-
-	p := &sync.Pool{}
-	p.Put(s) // want `argument should be pointer-like`
-	p.Put(&s)
-
-	var i interface{}
-	p.Put(i)
-
-	var up unsafe.Pointer
-	p.Put(up)
-
-	var basic int
-	p.Put(basic) // want `argument should be pointer-like`
+func Benchmark_LargeSize_Pool_ReturnNonpointer(b *testing.B) {
+	var bytePool = sync.Pool{
+		New: func() interface{} {
+			b := make([]byte, size)
+			return b
+		},
+	}
+	for i := 0; i < b.N; i++ {
+		dataLarge = bytePool.Get().([]byte)
+		_ = dataLarge
+		bytePool.Put(dataLarge)
+	}
 }
