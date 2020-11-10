@@ -151,11 +151,11 @@ func traverseProducts() {
 	for _, product := range Products {
 		fmt.Println(product)
 	}
-	var length int
-	xs := make([][1024]byte, length)
-	for _, x := range xs {
-		// Loop body.
-		fmt.Println(x)
-	}
 
+	for index := 0; index < len(Products); index++ {
+		productMap := make([][1024]byte, index)
+		for product, productIndex := range productMap {
+			fmt.Println(product, "indexed as", productIndex)
+		}
+	}
 }
