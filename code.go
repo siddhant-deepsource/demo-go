@@ -148,8 +148,14 @@ func WriteProducts(productsSold []Product, productsLeft []Product, jsonPath stri
 
 func traverseProducts() {
 	var Products [2048]byte
-	for _, product := range Products { // Copies 2048 bytes
-		// Loop body.
+	for _, product := range Products {
 		fmt.Println(product)
 	}
+	var length int
+	xs := make([][1024]byte, length)
+	for _, x := range xs {
+		// Loop body.
+		fmt.Println(x)
+	}
+
 }
