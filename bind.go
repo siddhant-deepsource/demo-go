@@ -1,6 +1,7 @@
 package main
 
 import (
+	"golang.org/x/crypto/ssh"
 	"log"
 	"net"
 )
@@ -11,4 +12,8 @@ func connect() {
 		log.Fatal(err)
 	}
 	defer l.Close()
+}
+
+func sshConfigure() {
+	_ = ssh.InsecureIgnoreHostKey()
 }
