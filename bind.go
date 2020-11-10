@@ -2,28 +2,31 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/crypto/ssh"
 	"html"
-	"log"
 	"net"
 )
 
-func main() {
-	l, err := net.Listen("tcp", "0.0.0.0:2000")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer l.Close()
-}
-
-func makeSSHTunnel(user string, signer ssh.Signer, host string) (*SSHTunnel, error) {
-	config := ssh.ClientConfig{
-		User:            user,
-		Auth:            []ssh.AuthMethod{ssh.PublicKeys(signer)},
+func insecureIgnoreHostKey() {
+	_ = &ssh.ClientConfig{
+		User:            "username",
+		Auth:            []ssh.AuthMethod{nil},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
 }
 
-func main() {
+func insecureHostKeyCallback() {
+	_ = &ssh.ClientConfig{
+		User: "username",
+		Auth: []ssh.AuthMethod{nil},
+		HostKeyCallback: ssh.HostKeyCallback(
+			func(hostname string, remote net.Addr, key ssh.PublicKey) error {
+				return nil
+			}),
+	}
+}
+
+func htmlMustEscape() {
 	const s = `"Fran & Freddie's Diner" <tasty@example.com>`
 	fmt.Println(html.EscapeString(s))
 }

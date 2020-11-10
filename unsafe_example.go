@@ -8,7 +8,8 @@ import (
 type Fake struct{}
 
 func (Fake) Good() {}
-func main() {
+
+func unsafeCode() {
 	unsafeM := Fake{}
 	unsafeM.Good()
 	intArray := [...]int{1, 2}
