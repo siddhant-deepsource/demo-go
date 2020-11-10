@@ -145,3 +145,11 @@ func WriteProducts(productsSold []Product, productsLeft []Product, jsonPath stri
 
 	return nil
 }
+
+func traverseProducts() {
+	var Products [2048]byte
+	for _, product := range Products { // Copies 2048 bytes
+		// Loop body.
+		fmt.Println(product)
+	}
+}
