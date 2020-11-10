@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"html"
 	"log"
 	"net"
 )
@@ -19,4 +21,9 @@ func makeSSHTunnel(user string, signer ssh.Signer, host string) (*SSHTunnel, err
 		Auth:            []ssh.AuthMethod{ssh.PublicKeys(signer)},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
+}
+
+func main() {
+	const s = `"Fran & Freddie's Diner" <tasty@example.com>`
+	fmt.Println(html.EscapeString(s))
 }
