@@ -82,3 +82,13 @@ func ExampleOpenFile() {
 	}
 
 }
+
+func createTempFile() {
+	tmpFile, err := os.Create("emptyFile.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(tmpFile)
+	tmpFile.Close()
+
+}
