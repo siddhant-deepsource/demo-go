@@ -9,7 +9,7 @@ var dataLarge []byte
 
 const size = 64 * 1024 //65536
 
-func Benchmark_LargeSize_Pool_ReturnNonpointer(b *testing.B) {
+func benchmarkLargeSizePool(b *testing.B) {
 	var bytePool = sync.Pool{
 		New: func() interface{} {
 			b := make([]byte, size)
