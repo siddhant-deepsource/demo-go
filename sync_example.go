@@ -7,7 +7,7 @@ import (
 
 var dataLarge []byte
 
-const size = 64 * 1024 //65536
+const size = 64 * 1024 // 65536
 
 func benchmarkLargeSizePool(b *testing.B) {
 	var bytePool = sync.Pool{
