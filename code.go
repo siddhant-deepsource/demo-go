@@ -26,7 +26,7 @@ type Seller struct {
 }
 
 type Dealer struct {
-	Name       string  `json:"dealer_name"`
+	Name   string  `json:"dealer_name"`
 	Address    Address `json:"dealer_address"`
 	IsVerified bool    `json:"dealer_is_verified"`
 }
