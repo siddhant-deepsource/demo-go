@@ -1,8 +1,13 @@
 version = 1
 
+exclude_patterns = [23]
+
 [[analyzers]]
 name = "go"
-enabled = true
+enabled = "true"
+
+  [analyzers.meta]
+  import_root = ["github.com/siddhant-deepsource/demo-go"]
 
 [[analyzers]]
 name = "docker"
