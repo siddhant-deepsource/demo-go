@@ -7,7 +7,7 @@ name = "go"
 enabled = "true"
 
   [analyzers.meta]
-  import_root = ["github.com/siddhant-deepsource/demo-go"]
+  "import_root" = ["github.com/siddhant-deepsource/demo-go"]
 
 [[analyzers]]
 name = "docker"
